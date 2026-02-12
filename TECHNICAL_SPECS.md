@@ -715,6 +715,23 @@ Source → Import → Process → Optimize → Package
 - LOD2: Simplified (500m-5km)
 - LOD3: Icon representation (> 5km)
 
+**Included Ship OBJ Assets**:
+
+Two modular ship packs are included in the repository root as starter assets:
+
+| Pack | Files | Ship Class |
+|------|-------|------------|
+| `CruiserBattleshipModulePack.zip` | `core_m.obj`, `spine_m.obj`, `engine_block_m.obj`, `turret_m.obj`, `hangar_m.obj` | Large (cruiser/battleship) |
+| `ModularShipModulePack.zip` | `core_s.obj`, `engine_s.obj`, `weapon_s.obj`, `wing_s.obj` | Small (fighter/multi-role) |
+
+**Hardpoint Convention**: OBJ files use `hp_` prefixed sub-objects to define attachment points:
+- `hp_engine_N` — Engine mount points
+- `hp_weapon_N` — Weapon hardpoint positions
+- `hp_wing_L` / `hp_wing_R` — Wing attachment (left/right)
+- `hp_spine` — Spine connector for capital ship module chaining
+
+These OBJ modules are designed for the modular ship assembly system where players and the construction system combine modules to build ships.
+
 **Planet Assets**:
 - Procedural materials with parameters
 - Tileable textures for terrain

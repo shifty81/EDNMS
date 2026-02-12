@@ -50,9 +50,19 @@ This is not a general-purpose engine, not a Unity/Unreal competitor, and not a t
 /Data/
   /Definitions/
   /Blueprints/
+  /ShipModules/     - OBJ ship module packs (see Ship Assets below)
 
 /Tests/
 ```
+
+### Ship Assets
+
+Two modular ship OBJ packs are included in the repository root:
+
+- **`CruiserBattleshipModulePack.zip`** — Large capital ship modules: `core_m.obj`, `spine_m.obj`, `engine_block_m.obj`, `turret_m.obj`, `hangar_m.obj`
+- **`ModularShipModulePack.zip`** — Small ship modules: `core_s.obj`, `engine_s.obj`, `weapon_s.obj`, `wing_s.obj`
+
+These use a hardpoint naming convention (`hp_` prefix) for attachment points, enabling modular ship assembly through the construction system.
 
 ### Dependency Rules
 
