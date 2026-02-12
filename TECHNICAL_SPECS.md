@@ -1,5 +1,5 @@
 # EDNMS Technical Specifications
-## Implementation Guide for Elite Dangerous + No Man's Sky Hybrid
+## Custom Engine Implementation Guide
 
 ---
 
@@ -50,6 +50,25 @@
 │  └────────────┘  └────────────┘  └────────────┘           │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+### 1.2 Game Engine
+**Decision: Custom Simulation-First Engine**
+
+After evaluating commercial engines, the project will use a custom engine designed specifically for this game's simulation requirements. See [ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md) for full details.
+
+- **Core Architecture**: ECS-based with engine-agnostic simulation layer
+- **Key Advantages**:
+  - Full control over simulation fidelity and chunk streaming
+  - Physical persistence guaranteed at the engine level
+  - Double-precision math for space-scale coordinates
+  - Deterministic simulation enabling headless testing
+  - No dependency on third-party engine roadmaps
+- **Rendering**: Initially minimal (OpenGL/Vulkan), upgraded over time
+- **Language**: C++17, data-driven design, no scripting until systems stabilize
+- **Build System**: CMake with static libraries per layer
+
+**Why Not Unreal Engine 5?**
+While Unreal offers excellent rendering (Nanite, Lumen) and World Partition, the simulation-first approach requires engine-agnostic logic. The hybrid path keeps all gameplay logic independent, allowing a potential renderer swap later.
 
 ---
 
@@ -872,7 +891,7 @@ Mods/
 
 ## Conclusion
 
-This technical specification provides a comprehensive blueprint for implementing EDNMS. The modular architecture allows for parallel development of different systems while maintaining clean interfaces between components. The focus on performance optimization from the ground up ensures the game can handle the massive scale of procedural generation while maintaining smooth gameplay.
+This technical specification provides a comprehensive blueprint for implementing EDNMS using a custom simulation-first engine architecture. The decision to build a custom engine (detailed in [ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md)) enables full control over the simulation core, chunk streaming, and physical persistence systems that are central to the game's vision. The modular architecture allows for parallel development of different systems while maintaining clean interfaces between components.
 
 Key technical priorities:
 1. **Robust Physics**: Ensure flight feels precise and responsive
