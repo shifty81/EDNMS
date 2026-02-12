@@ -134,7 +134,7 @@ class GalaxyGenerator {
     };
     
     StarSystem GenerateSystem(uint64_t systemId);
-    vector<StarSystem> GetNearby Systems(Vector3 position, float radius);
+    vector<StarSystem> GetNearbySystems(Vector3 position, float radius);
 };
 ```
 
