@@ -1,2 +1,139 @@
-# EDNMS
-ednms
+# EDNMS - Elite Dangerous + No Man's Sky Hybrid
+
+> *A next-generation space exploration game combining realistic flight simulation with infinite procedural worlds, survival mechanics, and deep building systems.*
+
+## 🚀 Overview
+
+EDNMS merges the best elements of Elite Dangerous and No Man's Sky into a comprehensive space exploration experience:
+
+- **Elite Dangerous Flight Model**: Precise 6DOF Newtonian physics and tactical combat
+- **No Man's Sky Exploration**: Vibrant procedural planets with diverse biomes and creatures
+- **Base Building**: Comprehensive construction on planets and space stations
+- **Survival Mechanics**: Resource management, environmental hazards, and crafting
+- **Multiplayer**: Seamless co-op and optional PvP
+
+## 📚 Documentation
+
+Comprehensive design documentation is available:
+
+- **[GAME_DESIGN.md](GAME_DESIGN.md)** - Complete game design document with all features
+- **[TECHNICAL_SPECS.md](TECHNICAL_SPECS.md)** - Technical implementation specifications
+- **[FEATURE_MATRIX.md](FEATURE_MATRIX.md)** - Feature comparison and integration plan
+- **[QUICKSTART.md](QUICKSTART.md)** - Development quick start guide
+- **[ROADMAP.md](ROADMAP.md)** - Detailed development roadmap
+
+## ✨ Key Features
+
+### Space Flight & Combat
+- 6 degrees of freedom realistic physics
+- Power management system (weapons/shields/engines)
+- 20+ ships from small fighters to large freighters
+- Fixed, gimballed, and turreted weapons
+- Heat management and stealth mechanics
+
+### Planetary Exploration
+- Infinite procedurally generated planets
+- 15+ unique biomes (lush, toxic, frozen, scorched, exotic)
+- Procedural flora and fauna to discover
+- Dynamic weather and day/night cycles
+- Seamless space-to-surface transitions
+
+### Building Systems
+- **On-Foot Building**: Modular base construction with 30+ pieces
+- **Space Stations**: Orbital platform construction and management
+- **Automation**: Factory-style production chains
+- **Power Systems**: Solar, battery, and generator networks
+- **Teleportation**: Fast travel between bases
+
+### Survival Mechanics
+- Life support management (oxygen, temperature, radiation)
+- Hunger, thirst, and fatigue systems
+- Environmental hazards and extreme weather
+- Resource gathering and crafting
+- Multi-tool system (mining, scanning, combat)
+
+### Economy & Progression
+- Dynamic market economy with supply/demand
+- Multiple income sources (trading, mining, missions)
+- Ship upgrades and customization
+- Technology research and blueprints
+- Faction reputation system
+
+## 🎮 Game Modes
+
+- **Solo**: Complete offline experience
+- **Private Group**: Play with friends
+- **Open Play**: Full multiplayer with PvP zones
+- **Creative Mode**: Unlimited resources for building
+
+## 🛠️ Technology Stack
+
+- **Engine**: Unreal Engine 5 (Nanite, Lumen, World Partition)
+- **Language**: C++ and Blueprints
+- **Networking**: Client-server with P2P wings
+- **Platform**: PC (Windows/Linux) at launch, consoles post-launch
+
+## 🗺️ Development Roadmap
+
+### Phase 1: Prototype (Months 1-3)
+- Basic flight mechanics
+- Single planet generation
+- Simple base building
+- Core survival systems
+
+### Phase 2: Alpha (Months 4-9)
+- Multiple star systems
+- Ship variety and combat
+- Expanded building
+- Economy system
+
+### Phase 3: Beta (Months 10-15)
+- Station building
+- Multiplayer implementation
+- Full galaxy generation
+- Polish and optimization
+
+### Phase 4: Launch (Month 16+)
+- Public release
+- Day-one content
+- Community support
+- Post-launch updates
+
+See [ROADMAP.md](ROADMAP.md) for detailed milestones.
+
+## 🎯 Unique Features
+
+What sets EDNMS apart from other space games:
+
+1. **Hybrid Flight System**: Choose between simulation and arcade modes
+2. **Living Ecosystem**: Planets evolve based on player actions
+3. **Mega-Structures**: Build Dyson spheres, orbital rings, space elevators
+4. **Chronicle System**: AI-generated personal story missions
+5. **Guild Forge**: Community-created ships and stations
+
+## 🤝 Contributing
+
+We welcome contributions! Please see:
+- Code style guidelines
+- Pull request process
+- Testing requirements
+
+## 📝 License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+## 🌟 Credits
+
+Inspired by:
+- **Elite Dangerous** by Frontier Developments
+- **No Man's Sky** by Hello Games
+- Plus elements from Starfield, Star Citizen, Subnautica, and more
+
+## 📞 Contact
+
+- **Issues**: [GitHub Issues](https://github.com/shifty81/EDNMS/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/shifty81/EDNMS/discussions)
+
+---
+
+*Built with passion for space exploration, simulation depth, and player creativity.*
