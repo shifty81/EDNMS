@@ -3,6 +3,59 @@
 
 ---
 
+## 0. Hello World — Build & Run in 60 Seconds
+
+Before diving into the full development guide, verify your environment works:
+
+```bash
+# Clone and enter the repo
+git clone https://github.com/shifty81/EDNMS.git
+cd EDNMS
+
+# Build everything
+cmake -B build
+cmake --build build
+
+# Run the engine (creates a ship entity, prints to console)
+./build/EDNMS
+
+# Run the test suite (31 tests)
+./build/EDNMSTests
+```
+
+**Expected engine output:**
+```
+[INFO]  EDNMS Engine starting...
+[INFO]  Ship entity created (ID: 1)
+[INFO]  Ship position: (0.000000, 0.000000, 0.000000)
+[INFO]  Ship mass: 1000.000000 kg
+[INFO]  EDNMS Engine initialized. Entities: 1
+[INFO]  Ready for development. See QUICKSTART.md for next steps.
+```
+
+**Expected test output:**
+```
+EDNMS Test Suite
+================
+  PASS: ECS.CreateEntity
+  PASS: ECS.DestroyEntity
+  ... (31 tests)
+31 passed, 0 failed, 31 total
+```
+
+**Troubleshooting:**
+
+| Problem | Solution |
+|---------|----------|
+| `cmake` not found | Install CMake 3.20+ from https://cmake.org |
+| C++17 errors | Update your compiler: GCC 10+, Clang 12+, or MSVC 2022 |
+| Linker errors | Clean build: `rm -rf build && cmake -B build && cmake --build build` |
+| Tests fail | Open a [bug report](https://github.com/shifty81/EDNMS/issues) with your OS/compiler info |
+
+If you see the output above, you're ready to develop! Continue below for the full 12-week prototype plan.
+
+---
+
 ## 1. Project Setup
 
 ### 1.1 Prerequisites
