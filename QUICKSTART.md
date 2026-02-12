@@ -17,7 +17,7 @@
 - Visual Studio Code or CLion (C++ development)
 - Blender 3.6+ (3D asset creation — OBJ ship modules included in repo)
 - Substance Painter (texturing)
-- ImGui (debug UI, integrated into engine)
+- Custom C++/OpenGL UI system (GUI, HUD, and debug overlays built from scratch)
 
 ### 1.2 Repository Structure
 
@@ -70,7 +70,7 @@ EDNMS/
 2. Create ship entity with Physics + Transform
 3. Implement 6DOF thrust system
 4. Camera system (basic follow cam)
-5. Debug HUD (ImGui)
+5. Debug HUD (custom OpenGL UI)
 ```
 
 #### Week 3-4: Single Planet

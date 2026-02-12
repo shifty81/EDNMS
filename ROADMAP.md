@@ -26,7 +26,7 @@ Prove core mechanics work together and create a playable vertical slice demonstr
 - [ ] Ship entity with 6DOF physics system
 - [ ] Keyboard/mouse input handling
 - [ ] Camera system with smooth following
-- [ ] Basic debug HUD via ImGui (speed, heading)
+- [ ] Basic debug HUD via custom OpenGL UI (speed, heading)
 - [ ] Flight assist toggle
 
 **Success Metrics**:

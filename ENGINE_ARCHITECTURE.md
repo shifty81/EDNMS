@@ -635,6 +635,93 @@ Use:
 
 ---
 
+## Custom UI / HUD System
+
+All GUI, HUD, and debug overlays are built from scratch in C++ and OpenGL — no third-party UI libraries (no ImGui, no Dear ImGui, no external widget kits).
+
+### Design Principles
+
+1. **Engine-native**: UI rendering uses the same OpenGL pipeline as the game
+2. **Data-driven**: Widget layouts defined in data files, not hardcoded
+3. **Layered**: Game HUD, menus, and debug overlays are separate render layers
+4. **Resolution-independent**: All UI elements use normalized coordinates and scale to any resolution
+
+### UI Layers (Render Order)
+
+| Layer | Purpose | Examples |
+|-------|---------|----------|
+| 0 — Game World | 3D scene | Ships, planets, modules |
+| 1 — World HUD | In-world overlays | Hardpoint markers, power flow lines, ship labels |
+| 2 — Screen HUD | Player status | Speed, oxygen, health, power distribution, compass |
+| 3 — Menus | Full-screen UI | Inventory, ship editor, galaxy map, building mode |
+| 4 — Debug | Dev overlays | ECS inspector, chunk visualizer, power overlay, FPS counter |
+
+### Core UI Components
+
+- **Text renderer**: Bitmap font atlas with OpenGL quad batching
+- **Rect / panel system**: Colored and textured quads with borders
+- **Slider / bar widgets**: For health, oxygen, power, construction progress
+- **List / grid views**: For inventory, module browser, market
+- **Tooltip system**: Context-sensitive hover information
+- **Input handling**: Mouse + keyboard event routing per layer
+
+### HUD Elements (In-Game)
+
+```
+┌──────────────────────────────────────────────┐
+│  [Speed]        [Crosshair]        [Shields]  │
+│   250m/s            ⊕               |||||||   │
+│                                     |||||||   │
+│  [Thrust]                           [Hull]    │
+│   ▓▓▓▓▓░░░                         ========  │
+│                                               │
+│  [Target Info]                [System Info]   │
+│   Enemy Ship                    Oxygen: 95%   │
+│   Hull: 60%                     Temp: 22°C    │
+│   Shield: 40%                   Hazard: None  │
+│                                               │
+│  [Power: SYS/ENG/WEP]       [Construction]   │
+│   ██░░ ░░██ ██░░              Stage 3/5 47%  │
+└──────────────────────────────────────────────┘
+```
+
+### Ship Editor UI
+
+```
+┌──────────────────────────────────────────────┐
+│  Ship Editor                                  │
+│  ┌──────────────┐  ┌──────────────────────┐  │
+│  │  Modules     │  │  [3D Preview]         │  │
+│  │  - Core      │  │   Ghost snap preview  │  │
+│  │  - Engine    │  │   Green = valid       │  │
+│  │  - Weapon    │  │   Red = invalid       │  │
+│  │  - Wing      │  │                       │  │
+│  └──────────────┘  └──────────────────────┘  │
+│  ┌──────────────────────────────────────────┐│
+│  │ Power: OK | Thrust/Mass: 1.2 | Sym: ON  ││
+│  └──────────────────────────────────────────┘│
+│  [Attach] [Mirror] [Remove] [Undo] [Redo]    │
+└──────────────────────────────────────────────┘
+```
+
+### Building Mode UI
+
+```
+┌──────────────────────────────────────────────┐
+│  Building Mode                                │
+│  ┌──────────────┐  ┌──────────────┐          │
+│  │  Structures  │  │  Resources   │          │
+│  │  - Floor     │  │  Iron: 500   │          │
+│  │  - Wall      │  │  Carbon: 300 │          │
+│  │  - Hangar    │  │  Ferrite: 50 │          │
+│  └──────────────┘  └──────────────┘          │
+│  [Stage: Framework 62%]                       │
+│  [Place] [Rotate] [Delete] [Exit]            │
+└──────────────────────────────────────────────┘
+```
+
+---
+
 ## Debug Tooling
 
 If you skip this, you will regret it. Build debug tools early.
@@ -664,8 +751,8 @@ If you skip this, you will regret it. Build debug tools early.
 
 ### Tech
 
-- ImGui (even headless with dummy renderer)
-- Toggleable overlays
+- Custom C++/OpenGL UI system (no third-party GUI libraries)
+- Toggleable overlays rendered via the engine's own UI layer
 - Zero gameplay dependencies
 
 ---
