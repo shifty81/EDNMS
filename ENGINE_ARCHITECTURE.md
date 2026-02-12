@@ -5,13 +5,16 @@
 
 ## Core Philosophy
 
-These five rules govern every architectural decision. They are non-negotiable.
+These rules govern every architectural decision. They are non-negotiable.
 
 1. **Simulation first, visuals second**
 2. **Everything is data-driven**
 3. **No system depends on rendering**
 4. **If it can't be saved/loaded, it doesn't exist**
 5. **One solar system must run headless**
+6. **Everything is procedurally generated or AI-created — no pre-made assets**
+
+All game content — geometry, textures, ships, creatures, planets, stations, flora, fauna, terrain, interiors, and UI elements — is generated at runtime through procedural algorithms and AI systems. There are no handcrafted 3D models, no imported artist assets, and no external content libraries. The OBJ module packs in the repository serve as reference geometry and test placeholders that will be replaced by the procedural generation pipeline.
 
 This is not a general-purpose engine, not a Unity/Unreal competitor, and not a tech demo. It is a **simulation-first engine** designed specifically for a space survival / colonization game. Everything exists to serve physical persistence, scale, logistics, ownership, and long-term simulation.
 
@@ -632,6 +635,57 @@ Use:
     ↓
 [Render / Debug]
 ```
+
+---
+
+## Procedural Generation & AI Content Pipeline
+
+All game content is generated procedurally or by AI at runtime. There are no pre-made artist assets.
+
+### What Is Procedurally Generated
+
+| Content | Generation Method | Seed-Based |
+|---------|------------------|------------|
+| **Planets** | Noise functions (Perlin, Simplex, Worley) for terrain, atmosphere, biomes | Yes |
+| **Stars & Systems** | Stellar classification rules + orbital mechanics | Yes |
+| **Ship Modules** | Parameterized geometry from module definitions (box hulls, engine bells, turret mounts) | Yes |
+| **Ship Assembly** | AI Ship Designer using DNA seeds, faction styles, and silhouette rules | Yes |
+| **Creatures** | Procedural body plans with limb/joint graphs and behavioral AI | Yes |
+| **Flora** | L-system growth algorithms with biome-appropriate parameters | Yes |
+| **Terrain** | Chunked heightmap + voxel generation with erosion simulation | Yes |
+| **Textures & Materials** | Procedural PBR generation (noise-based color, roughness, normal maps) | Yes |
+| **Structures & Ruins** | Grammar-based building generation for derelicts, outposts, stations | Yes |
+| **Station Interiors** | Modular room graph generation from station module types | Yes |
+| **Weather** | Atmospheric simulation driven by planet parameters | No (dynamic) |
+| **NPC Behavior** | AI decision trees driven by faction doctrine and survival rules | No (dynamic) |
+
+### Generation Principles
+
+1. **Seed determinism**: Same seed always produces the same result — critical for save/load, networking, and DNA-based ship serialization
+2. **LOD-aware generation**: Generate only what the player can perceive at current distance; detail increases on approach
+3. **GPU-accelerated where possible**: Terrain, textures, and noise generation run on compute shaders
+4. **Lazy evaluation**: Content generates on demand as chunks load, not upfront
+5. **AI-driven variation**: AI systems (ship designer, creature generator, ruin placer) use heuristic rules to ensure content is coherent, not random noise
+
+### Procedural Geometry Pipeline
+
+```
+[Seed + Parameters]
+    ↓
+[Noise / Algorithm]
+    ↓
+[Vertex Buffer Generation]
+    ↓
+[Normal Calculation]
+    ↓
+[Procedural Material Assignment]
+    ↓
+[LOD Variants (reduce on distance)]
+    ↓
+[GPU Upload → Render]
+```
+
+No `.fbx`, no `.blend`, no imported meshes in the final game. The OBJ files in the repository (`CruiserBattleshipModulePack.zip`, `ModularShipModulePack.zip`) serve as reference shapes and test geometry during development — the procedural pipeline will generate equivalent geometry at runtime.
 
 ---
 

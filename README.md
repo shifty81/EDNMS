@@ -87,7 +87,7 @@ Modular OBJ ship models are included for use in the engine's asset pipeline:
 | `CruiserBattleshipModulePack.zip` | `core_m.obj`, `spine_m.obj`, `engine_block_m.obj`, `turret_m.obj`, `hangar_m.obj` | Large capital ship modules (cruiser/battleship class) with hardpoints for engines, weapons, spine connectors, and hangar bays |
 | `ModularShipModulePack.zip` | `core_s.obj`, `engine_s.obj`, `weapon_s.obj`, `wing_s.obj` | Small modular ship modules with hardpoints for engines, weapons, and wing attachments |
 
-Models use a hardpoint naming convention (`hp_` prefix) for attachment points, enabling modular ship assembly in the construction system. See [TECHNICAL_SPECS.md](TECHNICAL_SPECS.md) for the asset pipeline specification.
+Models use a hardpoint naming convention (`hp_` prefix) for attachment points, enabling modular ship assembly in the construction system. These serve as reference geometry and test placeholders — the procedural generation pipeline will generate equivalent module geometry at runtime. See [TECHNICAL_SPECS.md](TECHNICAL_SPECS.md) for the asset pipeline specification.
 
 ## 🛠️ Technology Stack
 
@@ -103,6 +103,7 @@ Models use a hardpoint naming convention (`hp_` prefix) for attachment points, e
 3. No system depends on rendering
 4. If it can't be saved/loaded, it doesn't exist
 5. One solar system must run headless
+6. Everything is procedurally generated or AI-created — no pre-made assets
 
 ## 🗺️ Development Roadmap
 

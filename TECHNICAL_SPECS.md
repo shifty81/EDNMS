@@ -703,21 +703,22 @@ TEST(PlanetGenerator, ConsistentGeneration) {
 
 ## 9. Asset Pipeline
 
-### 9.1 3D Assets
+> **Core Principle**: All visual content is procedurally generated or AI-created at runtime. There are no pre-made artist assets in the final game. Every mesh, texture, and material is generated from seeds and parameters.
+
+### 9.1 Procedural 3D Assets
 ```
-Source → Import → Process → Optimize → Package
-(.fbx)   (Engine)  (LODs)   (Compress)  (.pak)
+[Seed + Parameters] → [Algorithm] → [Vertex Generation] → [LOD Variants] → [GPU]
 ```
 
-**Ship Models**:
+**Ship Modules** (procedurally generated geometry):
 - LOD0: Full detail (< 50m)
 - LOD1: Reduced geometry (50m-500m)
 - LOD2: Simplified (500m-5km)
 - LOD3: Icon representation (> 5km)
 
-**Included Ship OBJ Assets**:
+**Reference Ship OBJ Assets** (development/testing only):
 
-Two modular ship packs are included in the repository root as starter assets:
+Two modular ship packs are included in the repository root as reference geometry and test placeholders. The procedural pipeline will generate equivalent module geometry at runtime.
 
 | Pack | Files | Ship Class |
 |------|-------|------------|
@@ -730,12 +731,13 @@ Two modular ship packs are included in the repository root as starter assets:
 - `hp_wing_L` / `hp_wing_R` — Wing attachment (left/right)
 - `hp_spine` — Spine connector for capital ship module chaining
 
-These OBJ modules are designed for the modular ship assembly system where players and the construction system combine modules to build ships.
+These OBJ modules serve as reference shapes for the modular ship assembly system. In production, the AI Ship Designer and procedural geometry systems generate all module meshes from parameterized definitions.
 
-**Planet Assets**:
-- Procedural materials with parameters
-- Tileable textures for terrain
-- Instanced models for flora
+**Planet Assets** (all procedural):
+- Terrain: Noise-based heightmaps + voxel caves
+- Materials: Procedural PBR (color, roughness, normals from noise)
+- Flora: L-system growth algorithms
+- Fauna: Procedural body plans with limb graphs
 
 ### 9.2 Audio
 ```
@@ -832,9 +834,8 @@ class ModAPI {
 ```
 Mods/
 ├── CustomShips/
-│   ├── ship_model.fbx
-│   ├── ship_definition.json
-│   └── textures/
+│   ├── ship_definition.json     (procedural parameters + DNA overrides)
+│   └── module_definitions.json  (parameterized module geometry)
 ├── CustomWeapons/
 │   └── weapon_definition.json
 └── CustomBiomes/

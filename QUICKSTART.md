@@ -15,8 +15,7 @@
 
 **Recommended Tools**:
 - Visual Studio Code or CLion (C++ development)
-- Blender 3.6+ (3D asset creation — OBJ ship modules included in repo)
-- Substance Painter (texturing)
+- GPU profiling tools (RenderDoc, NVIDIA Nsight)
 - Custom C++/OpenGL UI system (GUI, HUD, and debug overlays built from scratch)
 
 ### 1.2 Repository Structure
