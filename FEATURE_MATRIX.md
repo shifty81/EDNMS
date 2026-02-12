@@ -202,9 +202,15 @@
 - [x] Resource gathering (No Man's Sky)
 - [x] Crafting system (No Man's Sky)
 - [x] Trading economy (Elite Dangerous)
+- [x] Buildable hangars — planetary (new feature)
+- [x] Physical logistics — no magic inventories (new feature)
+- [x] Construction staging system (new feature)
 
 ### 4.2 Should-Have (Post-Launch 6 months)
-- [ ] Station building (new feature)
+- [ ] Station building — X4-style modular (new feature)
+- [ ] Orbital hangars — walkable docking rings (new feature)
+- [ ] Terraforming — multi-stage planetary transformation (new feature)
+- [ ] System ownership tiers T0–T5 (new feature)
 - [ ] Underwater exploration (Subnautica)
 - [ ] Faction system (Elite Dangerous)
 - [ ] Discovery database (No Man's Sky)
@@ -415,6 +421,6 @@ The result is a game where you can:
 - Automate production chains
 - Trade, fight, explore, or build - your choice
 
-**Total Features**: 73 integrated features from 8 different games, plus 5 unique EDNMS systems
+**Total Features**: 80+ integrated features from 8 different games, plus 5 unique EDNMS systems and new hangar, terraforming, logistics, and system ownership mechanics
 
 This isn't just a clone of either game - it's the evolution of the space exploration genre.
