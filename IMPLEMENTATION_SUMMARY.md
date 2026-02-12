@@ -7,7 +7,7 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 ## Completed Documentation
 
 ### 1. Game Design Document (GAME_DESIGN.md)
-**Size**: 446 lines / 16.4 KB
+**Updated** — expanded with hangars, terraforming, system ownership, logistics, construction staging
 
 **Contents**:
 - Complete analysis of Elite Dangerous features (20 core features)
@@ -21,21 +21,26 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
   - Satisfactory/Factorio (5 features)
   - EVE Online (5 features)
   - Minecraft/Terraria (3 features)
+- Hangar system (planetary and orbital, physical docking)
+- Terraforming (multi-stage planetary transformation)
+- System ownership (T0–T5 tiered progression)
+- Physical logistics (no magic inventories)
+- Construction staging
 - 4-phase game progression system
-- Technical implementation recommendations (Unreal Engine 5)
+- Technical implementation recommendations (custom engine)
 - 5 unique EDNMS differentiators
 - Ethical monetization model
 - 4-phase development roadmap
 - Risk mitigation strategies
 
 ### 2. Technical Specifications (TECHNICAL_SPECS.md)
-**Size**: 884 lines / 24 KB
+**Updated** — now targets custom engine with procedural asset generation
 
 **Contents**:
 - Complete system architecture with diagrams
 - 6 core module specifications with C++ code examples:
   - Flight System (6DOF physics, power management)
-  - Procedural Generation (galaxy, planets, creatures)
+  - Procedural Generation (galaxy, planets, creatures, textures, ships)
   - Building System (bases and stations)
   - Survival System (life support, hazards)
   - Combat System (weapons, shields)
@@ -46,7 +51,7 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 - AI systems (ship AI, creature AI)
 - UI/UX specifications
 - Testing strategy (unit, integration, performance tests)
-- Asset pipeline details
+- Procedural asset pipeline (no pre-made assets)
 - Development tools specifications
 - Security considerations
 - Modding support framework
@@ -54,7 +59,7 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 - Platform requirements and system specs
 
 ### 3. Feature Matrix (FEATURE_MATRIX.md)
-**Size**: 420 lines / 16 KB
+**Updated** — expanded with new features (hangars, terraforming, modular ships, system ownership)
 
 **Contents**:
 - Detailed comparison tables:
@@ -78,7 +83,7 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 - Success metrics for each system
 
 ### 4. Development Roadmap (ROADMAP.md)
-**Size**: 744 lines / 17 KB
+**Updated** — revised for custom engine development
 
 **Contents**:
 - Complete 18-month development timeline
@@ -104,7 +109,7 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 - Community engagement timeline
 
 ### 5. Quick Start Guide (QUICKSTART.md)
-**Size**: 723 lines / 18 KB
+**Updated** — revised for custom engine setup
 
 **Contents**:
 - Prerequisites and tool requirements
@@ -127,7 +132,7 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 - Week 1 action items
 
 ### 6. Project README (README.md)
-**Size**: 139 lines / 4.6 KB
+**Updated**
 
 **Contents**:
 - Executive summary
@@ -141,16 +146,65 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 - Credits and inspiration
 - Contact information
 
+### 7. Engine Architecture (ENGINE_ARCHITECTURE.md)
+**NEW Document**
+
+**Contents**:
+- Core philosophy (simulation-first, everything procedural, no pre-made assets)
+- Custom engine project layout with dependency rules
+- ECS architecture with concrete C++ component definitions
+- Chunk streaming model with priority scheduling
+- Binary save/load format (versioned, chunk-local)
+- Power network graph simulation
+- Low-fidelity simulation rules for background systems
+- Task/job system for multi-core determinism
+- Procedural generation & AI content pipeline
+- Custom C++/OpenGL UI/HUD system (no ImGui)
+- Debug tooling specifications
+
+### 8. Narrative Design (NARRATIVE_DESIGN.md)
+**NEW Document**
+
+**Contents**:
+- Core premise: "The Galaxy Is Recovering, Not Thriving"
+- Player role: Systems Pioneer / Recovery Engineer
+- Story delivery through simulation state (no quest logs)
+- Three narrative arcs: Terraforming Paradox, Silent Infrastructure, Ownership vs Stewardship
+- Story System 001: "Ember Reach" — complete first playable story system
+- Player motivation progression (immediate → medium → long-term)
+- Narrative design principles
+
+### 9. Modular Ship System (MODULAR_SHIPS.md)
+**NEW Document**
+
+**Contents**:
+- Ship = graph of modules architecture
+- Ship classes & silhouette rules (NMS-style)
+- 9 size classes from XS (fighters) to TITAN (world-eaters)
+- AI Ship Designer with 7-phase design script
+- ShipDNA seed-based identity (12-byte deterministic serialization)
+- Faction style matrix preventing "style soup"
+- Hardpoint snapping math (rotation, mirroring, alignment)
+- Module damage & cascading failure system
+- Binary ship serializer (100–300 bytes per ship)
+- Composite TITAN AI (federation of brains)
+- Interior module system (habitats, factories, hangars)
+- Player ship editor (same rules as AI)
+- Fleet doctrine system
+- Procedural module geometry generation
+
 ## Key Statistics
 
 ### Documentation Scope
-- **Total Documents**: 6 comprehensive files
-- **Total Lines**: 4,156 lines of documentation
-- **Total Size**: ~96 KB of content
-- **Features Documented**: 73+ integrated features
+- **Total Documents**: 9 comprehensive files + 2 design conversation transcripts
+- **Total Lines**: 7,000+ lines of documentation
+- **Total Size**: ~180 KB of content
+- **Features Documented**: 80+ integrated features
 - **Games Analyzed**: 8 major titles
-- **Code Examples**: 20+ implementation examples
-- **Unique Systems**: 5 EDNMS-specific innovations
+- **Code Examples**: 40+ implementation examples
+- **Unique Systems**: 10+ EDNMS-specific innovations
+- **Ship Size Classes**: 9 (XS → TITAN)
+- **Ship Assets**: 2 reference OBJ module packs (9 modules total)
 
 ### Feature Breakdown
 
@@ -248,23 +302,30 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 
 ## Technical Architecture
 
-### Engine Choice: Unreal Engine 5
+### Engine Choice: Custom Simulation-First Engine
 **Reasons**:
-- Nanite: Perfect for detailed planets
-- Lumen: Beautiful lighting
-- World Partition: Stream massive worlds
-- Strong networking: Multiplayer ready
-- C++ and Blueprints: Flexibility
+- Full control over simulation fidelity and chunk streaming
+- Physical persistence guaranteed at the engine level
+- Double-precision math for space-scale coordinates
+- Deterministic simulation enabling headless testing
+- All content procedurally generated or AI-created at runtime
+- Custom C++/OpenGL UI, HUD, and debug overlays
+- No dependency on third-party engine or asset pipelines
 
 ### Core Systems
 1. **Flight System**: 6DOF physics with flight assist
-2. **Procedural Generation**: Seed-based consistency
-3. **Building System**: Modular snap-to-grid
-4. **Survival System**: Resource management
-5. **Combat System**: Power distribution
-6. **Economy System**: Supply and demand
-7. **Network System**: Client-server with P2P wings
-8. **Save System**: Cloud sync with backups
+2. **Procedural Generation**: All content generated from seeds (planets, ships, creatures, textures)
+3. **Building System**: Modular snap-to-grid with construction staging
+4. **Survival System**: Resource management (O2, temperature, radiation, health)
+5. **Combat System**: Power distribution with modular damage & cascading failures
+6. **Economy System**: Physical logistics — no magic inventories
+7. **Modular Ship System**: DNA-based ship generation, AI designer, 9 size classes (XS → TITAN)
+8. **Hangar System**: Planetary and orbital hangars with physical docking
+9. **Terraforming**: Multi-stage planetary transformation
+10. **System Ownership**: T0–T5 tiered progression to full solar system control
+11. **Network System**: Client-server with P2P wings
+12. **Save System**: Chunk-based binary serialization
+13. **Custom UI/HUD**: C++/OpenGL GUI, HUD, and debug overlays built from scratch
 
 ### Performance Targets
 - **FPS**: 60 minimum on recommended specs
@@ -320,6 +381,15 @@ EDNMS successfully combines the best elements of Elite Dangerous and No Man's Sk
 - Launch: PC (Windows/Linux)
 - Month 24-30: PS5 and Xbox Series X/S
 - Consideration: Mac (Apple Silicon)
+
+### Design Conversation Transcripts
+- **ednms.txt**: Original game design brainstorming covering Elite Dangerous + NMS hybrid, custom engine decision, ECS/chunk/save architecture, and narrative design
+- **modular ship.txt**: Modular ship system development covering procedural generation, AI designer, ship classes (XS → TITAN), combat, serialization, fleet systems, and mod support
+
+### Ship Asset Reference Packs
+- **CruiserBattleshipModulePack.zip**: 5 OBJ modules (core_m, spine_m, engine_block_m, turret_m, hangar_m) — large ship reference geometry
+- **ModularShipModulePack.zip**: 4 OBJ modules (core_s, engine_s, weapon_s, wing_s) — small ship reference geometry
+- These serve as development reference only; the procedural pipeline generates all module geometry at runtime
 
 ## Conclusion
 

@@ -18,8 +18,9 @@ Comprehensive design documentation is available:
 
 - **[GAME_DESIGN.md](GAME_DESIGN.md)** - Complete game design document with all features
 - **[TECHNICAL_SPECS.md](TECHNICAL_SPECS.md)** - Technical implementation specifications
-- **[ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md)** - Custom engine architecture (ECS, chunks, serialization)
+- **[ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md)** - Custom engine architecture (ECS, chunks, serialization, procedural generation)
 - **[NARRATIVE_DESIGN.md](NARRATIVE_DESIGN.md)** - Story premise, narrative arcs, and Ember Reach walkthrough
+- **[MODULAR_SHIPS.md](MODULAR_SHIPS.md)** - Modular ship system (generation, combat, DNA serialization, TITAN ships)
 - **[FEATURE_MATRIX.md](FEATURE_MATRIX.md)** - Feature comparison and integration plan
 - **[QUICKSTART.md](QUICKSTART.md)** - Development quick start guide
 - **[ROADMAP.md](ROADMAP.md)** - Detailed development roadmap
