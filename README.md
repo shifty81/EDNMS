@@ -1,6 +1,5 @@
 # EDNMS — Elite Dangerous × No Man's Sky Hybrid
 
-[![CI](https://github.com/shifty81/EDNMS/actions/workflows/ci.yml/badge.svg)](https://github.com/shifty81/EDNMS/actions/workflows/ci.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 **EDNMS** is an open-source space exploration game that fuses Elite Dangerous' precise 6DOF flight model with No Man's Sky's vibrant procedural universe — then adds deep on-foot base building, orbital station construction, physical logistics, and real survival mechanics. Everything in the game — planets, ships, creatures, textures — is procedurally generated at runtime from seeds: no pre-made assets, no loading screens between space and surface.
@@ -163,7 +162,6 @@ EDNMS/
 | Rendering | OpenGL/Vulkan | Minimal initially, upgraded over time |
 | Math | Double-precision | Space-scale coordinates (Vec3d, Quatd) |
 | Platform | PC (Win/Linux) | Console ports post-launch |
-| CI | GitHub Actions | Build + test on every push/PR |
 
 ### Core Philosophy
 1. Simulation first, visuals second
