@@ -20,12 +20,13 @@ Prove core mechanics work together and create a playable vertical slice demonstr
 
 ### Month 1: Foundation
 
-#### Week 1-2: Flight System
+#### Week 1-2: Engine Core & Flight System
 **Deliverables**:
-- [ ] Ship actor with 6DOF physics
+- [ ] ECS registry + core components (Transform, Physics, Survival, Power)
+- [ ] Ship entity with 6DOF physics system
 - [ ] Keyboard/mouse input handling
 - [ ] Camera system with smooth following
-- [ ] Basic HUD (speed, heading)
+- [ ] Basic debug HUD via custom OpenGL UI (speed, heading)
 - [ ] Flight assist toggle
 
 **Success Metrics**:
@@ -67,13 +68,14 @@ Prove core mechanics work together and create a playable vertical slice demonstr
 
 **Team**: 2 programmers, 1 animator
 
-#### Week 7-8: Building System
+#### Week 7-8: Building System & Hangars
 **Deliverables**:
 - [ ] Building mode toggle
 - [ ] 5 structure types (foundation, wall, roof, door, window)
-- [ ] Placement validation
+- [ ] Placement validation via construction staging system
 - [ ] Snap-to-grid system
 - [ ] Delete/move placed pieces
+- [ ] Basic planetary hangar (Light Pad) with ship docking
 
 **Success Metrics**:
 - Can build simple shelter in < 5 minutes
@@ -84,13 +86,14 @@ Prove core mechanics work together and create a playable vertical slice demonstr
 
 ### Month 3: Survival & Polish
 
-#### Week 9-10: Survival Mechanics
+#### Week 9-10: Survival Mechanics & Persistence
 **Deliverables**:
 - [ ] Multi-tool with mining beam
 - [ ] Resource nodes on planet
 - [ ] Inventory system (20 slots)
 - [ ] Oxygen meter with depletion
 - [ ] Simple crafting (5 recipes)
+- [ ] Chunk binary save/load system (world persistence)
 
 **Success Metrics**:
 - Resource gathering feels rewarding
@@ -117,8 +120,9 @@ Prove core mechanics work together and create a playable vertical slice demonstr
 
 ### Phase 1 Deliverable
 **"Proof of Concept" Demo**:
-- 15-minute vertical slice
-- Shows all core systems working together
+- 15-minute vertical slice on custom engine
+- Shows ECS, chunk streaming, and core gameplay working together
+- Headless simulation can run independently of renderer
 - Used for investor pitches/crowdfunding
 - Public alpha announcement trailer
 

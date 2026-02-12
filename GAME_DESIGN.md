@@ -432,6 +432,162 @@ EDNMS is an ambitious space exploration and survival game that combines the best
 
 ---
 
+## 11. Buildable Hangars
+
+### 11.1 Planetary Hangars (Outposts → Bases)
+
+**Functions**:
+- Ship storage & repair
+- On-foot to ship transition (no menus — physically walk to your ship)
+- Cargo loading/unloading
+- NPC pilots & crew management
+- Defensive emplacement anchor
+
+**Hangar Types**:
+
+| Hangar | Purpose |
+|--------|---------|
+| Light Pad | Fighters, shuttles |
+| Medium Hangar | Multi-role ships |
+| Heavy Bay | Freighters, corvettes |
+| Underground Hangar | Storm/radiation protection |
+
+**Gameplay Impact**:
+- Your ship is no longer a menu — it exists physically in your base
+- Bases feel alive with ship traffic
+- Raids & defense suddenly matter
+
+### 11.2 Orbital Hangars (Stations)
+
+Replace traditional "docking UI" with physical space:
+- EVA repairs on ship hulls
+- Walkable docking rings
+- Modular expansion (X4-style)
+- AI traffic flows (trade ships, NPC factions)
+
+---
+
+## 12. Terraforming System
+
+### 12.1 Design Philosophy
+Terraforming should be slow, expensive, and consequential — not a click. It is a long-term system project that requires orbital infrastructure and sustained investment.
+
+### 12.2 Terraforming Stages
+
+| Stage | Result |
+|-------|--------|
+| Survey | Assess atmosphere, gravity, soil composition |
+| Prep | Deploy orbital mirrors, redirect ice comets |
+| Stabilize | Normalize pressure & temperature |
+| Seed | Introduce plants, microbes |
+| Habitable | No suit required on surface |
+| Optimized | Industry bonuses unlocked |
+
+Each stage:
+- Takes real in-game time
+- Requires orbital infrastructure
+- Can be sabotaged or attacked by rivals
+
+### 12.3 Planet Upgrades (Post-Terraform)
+
+Once habitable, planets become strategic assets:
+
+| Upgrade | Effect |
+|---------|--------|
+| Habitats | Population growth |
+| Industry Zones | Ship parts, alloys production |
+| Agri Belts | Food & biofuel generation |
+| Research Arcologies | Technology unlocks |
+| Defense Grid | Anti-orbital weapons |
+
+---
+
+## 13. System Ownership & Tiered Progression
+
+### 13.1 Progression Loop
+```
+Land → Survive → Build Outpost → Add Hangar → Expand to Base
+→ Control Orbit → Build Stations → Terraform → System Ownership
+```
+
+### 13.2 Ownership Tiers
+
+| Tier | Name | What the Player Can Do |
+|------|------|----------------------|
+| T0 | Expedition | Temporary shelters, deployables |
+| T1 | Outpost | Permanent base, power, storage |
+| T2 | Base | Hangars, NPCs, manufacturing |
+| T3 | Orbital Control | Stations, shipyards |
+| T4 | Terraforming | Planet upgrades, habitability |
+| T5 | System Ownership | X4-style economy & governance |
+
+Nothing unlocks early. You earn godhood.
+
+### 13.3 System Control Metrics
+- **Population**: Citizens living in your system
+- **Stability**: How well your infrastructure holds together
+- **Defense**: Military readiness against threats
+- **Profit**: Economic output minus maintenance
+- **Reputation**: Standing with factions and NPCs
+
+Lose control? Stations defect. Colonies revolt. Pirates surge.
+
+### 13.4 Late-Game Survival
+Even as a system ruler:
+- You still need air in space
+- You can die on foot
+- Ships can strand you
+- Bases can fail without upkeep
+
+This keeps the game grounded instead of turning into a spreadsheet sim.
+
+---
+
+## 14. Physical Logistics System
+
+### 14.1 Core Rule
+**Everything must exist physically in the world.** No abstract menus. No instant results. No magic inventories.
+
+### 14.2 Transport Methods
+Every resource moves via physical entities:
+- **Ships**: Haulers and freighters carry cargo between systems
+- **Rovers**: Ground transport for planetary logistics
+- **Drones**: Short-range automated delivery
+- **Pipelines**: Fixed infrastructure for high-volume routes (later)
+
+### 14.3 Gameplay Implications
+- Mining ships haul ore from asteroids to refineries
+- Freighters move goods between stations
+- Fuel shortages cripple fleets
+- Piracy becomes meaningful because cargo physically exists
+- Supply chains can be disrupted, creating strategic gameplay
+
+---
+
+## 15. Construction Staging System
+
+### 15.1 Universal Construction
+All structures use the same staged construction system — bases, hangars, stations, and terraforming infrastructure.
+
+### 15.2 Build Stages
+
+| Stage | Requirements |
+|-------|-------------|
+| Planned | Valid site selected |
+| Site Prep | Tools + power available |
+| Framework | Bulk materials delivered |
+| Systems | Power components + advanced parts |
+| Finished | Final inspection / activation |
+
+### 15.3 Design Rules
+- Construction requires power + resources + time
+- No "instant builds" — everything is physically constructed
+- Partial destruction is possible (damage reverts stages)
+- Sabotage is meaningful in multiplayer
+- Same system scales from a habitat module to a space station
+
+---
+
 ## Conclusion
 
 EDNMS combines the precise flight simulation and realistic galaxy of Elite Dangerous with the vibrant procedural generation and player creativity of No Man's Sky, while adding deep survival mechanics and comprehensive building systems. This creates a unique space exploration experience that appeals to simulation enthusiasts, creative builders, and survival gamers alike.

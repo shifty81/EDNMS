@@ -8,46 +8,51 @@
 ### 1.1 Prerequisites
 
 **Required Software**:
-- Unreal Engine 5.3+ (recommended engine)
-- Visual Studio 2022 (C++ development)
-- Git (version control)
+- C++17 compliant compiler (GCC 10+, Clang 12+, or MSVC 2022)
 - CMake 3.20+ (build system)
+- Git (version control)
+- OpenGL 4.5+ or Vulkan SDK (rendering)
 
 **Recommended Tools**:
-- Visual Studio Code (scripting)
-- Blender 3.6+ (3D asset creation)
-- Substance Painter (texturing)
-- Perforce Helix (optional, for large assets)
+- Visual Studio Code or CLion (C++ development)
+- GPU profiling tools (RenderDoc, NVIDIA Nsight)
+- Custom C++/OpenGL UI system (GUI, HUD, and debug overlays built from scratch)
 
 ### 1.2 Repository Structure
 
 ```
 EDNMS/
-├── Source/                    # C++ source code
-│   ├── Core/                 # Core game systems
-│   │   ├── FlightSystem/
-│   │   ├── BuildingSystem/
-│   │   ├── SurvivalSystem/
-│   │   └── NetworkSystem/
-│   ├── Generation/           # Procedural generation
-│   │   ├── Galaxy/
-│   │   ├── Planet/
-│   │   └── Creature/
-│   ├── UI/                   # User interface
-│   └── Utilities/            # Helper functions
-├── Content/                  # Unreal Engine assets
-│   ├── Ships/
-│   ├── Planets/
-│   ├── Buildings/
-│   └── UI/
-├── Config/                   # Configuration files
-├── Plugins/                  # Third-party plugins
-├── Documentation/            # Design docs (this folder)
-│   ├── GAME_DESIGN.md
-│   ├── TECHNICAL_SPECS.md
-│   ├── FEATURE_MATRIX.md
-│   └── QUICKSTART.md
-└── Tests/                    # Unit and integration tests
+├── Engine/                   # Custom engine core
+│   ├── Core/                 # App lifecycle, time step, logging
+│   ├── ECS/                  # Entity Component System
+│   ├── Math/                 # Double-precision vectors, floating origin
+│   ├── IO/                   # Binary serialization, chunked saves
+│   ├── Jobs/                 # Task/job system
+│   └── Platform/             # Platform abstraction
+├── Simulation/               # Engine-agnostic simulation layer
+│   ├── World/                # World hierarchy, chunk streaming
+│   ├── Survival/             # O2, temperature, radiation, health
+│   ├── Power/                # Power network graphs
+│   ├── Logistics/            # Physical resource transport
+│   ├── Construction/         # Staged building system
+│   └── Ownership/            # Faction/system ownership
+├── Game/                     # Game-specific logic
+│   ├── Player/               # Input, camera, UI glue
+│   ├── Ships/                # Ship entities and modules
+│   ├── Bases/                # Base entities
+│   └── Stations/             # Station entities
+├── Renderer/                 # Minimal renderer (OpenGL/Vulkan)
+├── Tools/                    # Development tools
+│   ├── WorldEditor/          # In-engine world editing
+│   └── AssetPipeline/        # OBJ import, LOD generation
+├── Data/                     # Data-driven definitions
+│   ├── Definitions/          # Entity/component definitions
+│   ├── Blueprints/           # Construction blueprints
+│   └── ShipModules/          # OBJ ship module packs
+├── Tests/                    # Unit and integration tests
+├── CruiserBattleshipModulePack.zip  # Large ship OBJ modules
+├── ModularShipModulePack.zip        # Small ship OBJ modules
+└── CMakeLists.txt            # Build system root
 ```
 
 ---
@@ -60,11 +65,11 @@ EDNMS/
 #### Week 1-2: Flight System
 ```cpp
 // Priority: Get a ship flying in space
-1. Create basic ship actor
-2. Implement 6DOF physics
-3. Add thruster inputs
-4. Camera system
-5. Basic HUD
+1. Set up ECS registry + core components
+2. Create ship entity with Physics + Transform
+3. Implement 6DOF thrust system
+4. Camera system (basic follow cam)
+5. Debug HUD (custom OpenGL UI)
 ```
 
 #### Week 3-4: Single Planet
@@ -220,6 +225,8 @@ EDNMS/
 ---
 
 ## 4. Technical Implementation Tips
+
+> **Note**: Code examples below use illustrative APIs. The actual implementation uses the custom ECS architecture described in [ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md). Unreal-style naming in examples is for readability; real code will use the engine's ECS components and systems.
 
 ### 4.1 Flight System Best Practices
 
@@ -583,10 +590,10 @@ void AShip::DrawDebugInfo()
 
 ### 8.1 Learning Resources
 
-**Unreal Engine**:
-- Official Documentation: https://docs.unrealengine.com
-- Learning Portal: https://learn.unrealengine.com
-- Forums: https://forums.unrealengine.com
+**Custom Engine & ECS**:
+- See [ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md) for full architecture details
+- "Game Engine Architecture" by Jason Gregory (comprehensive reference)
+- EnTT ECS library documentation (reference ECS implementation)
 
 **Procedural Generation**:
 - "Procedural Generation in Game Design" book

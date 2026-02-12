@@ -1,5 +1,5 @@
 # EDNMS Technical Specifications
-## Implementation Guide for Elite Dangerous + No Man's Sky Hybrid
+## Custom Engine Implementation Guide
 
 ---
 
@@ -50,6 +50,25 @@
 │  └────────────┘  └────────────┘  └────────────┘           │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+### 1.2 Game Engine
+**Decision: Custom Simulation-First Engine**
+
+After evaluating commercial engines, the project will use a custom engine designed specifically for this game's simulation requirements. See [ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md) for full details.
+
+- **Core Architecture**: ECS-based with engine-agnostic simulation layer
+- **Key Advantages**:
+  - Full control over simulation fidelity and chunk streaming
+  - Physical persistence guaranteed at the engine level
+  - Double-precision math for space-scale coordinates
+  - Deterministic simulation enabling headless testing
+  - No dependency on third-party engine roadmaps
+- **Rendering**: Initially minimal (OpenGL/Vulkan), upgraded over time
+- **Language**: C++17, data-driven design, no scripting until systems stabilize
+- **Build System**: CMake with static libraries per layer
+
+**Why Not Unreal Engine 5?**
+While Unreal offers excellent rendering (Nanite, Lumen) and World Partition, the simulation-first approach requires engine-agnostic logic. The hybrid path keeps all gameplay logic independent, allowing a potential renderer swap later.
 
 ---
 
@@ -684,22 +703,41 @@ TEST(PlanetGenerator, ConsistentGeneration) {
 
 ## 9. Asset Pipeline
 
-### 9.1 3D Assets
+> **Core Principle**: All visual content is procedurally generated or AI-created at runtime. There are no pre-made artist assets in the final game. Every mesh, texture, and material is generated from seeds and parameters.
+
+### 9.1 Procedural 3D Assets
 ```
-Source → Import → Process → Optimize → Package
-(.fbx)   (Engine)  (LODs)   (Compress)  (.pak)
+[Seed + Parameters] → [Algorithm] → [Vertex Generation] → [LOD Variants] → [GPU]
 ```
 
-**Ship Models**:
+**Ship Modules** (procedurally generated geometry):
 - LOD0: Full detail (< 50m)
 - LOD1: Reduced geometry (50m-500m)
 - LOD2: Simplified (500m-5km)
 - LOD3: Icon representation (> 5km)
 
-**Planet Assets**:
-- Procedural materials with parameters
-- Tileable textures for terrain
-- Instanced models for flora
+**Reference Ship OBJ Assets** (development/testing only):
+
+Two modular ship packs are included in the repository root as reference geometry and test placeholders. The procedural pipeline will generate equivalent module geometry at runtime.
+
+| Pack | Files | Ship Class |
+|------|-------|------------|
+| `CruiserBattleshipModulePack.zip` | `core_m.obj`, `spine_m.obj`, `engine_block_m.obj`, `turret_m.obj`, `hangar_m.obj` | Large (cruiser/battleship) |
+| `ModularShipModulePack.zip` | `core_s.obj`, `engine_s.obj`, `weapon_s.obj`, `wing_s.obj` | Small (fighter/multi-role) |
+
+**Hardpoint Convention**: OBJ files use `hp_` prefixed sub-objects to define attachment points:
+- `hp_engine_N` — Engine mount points
+- `hp_weapon_N` — Weapon hardpoint positions
+- `hp_wing_L` / `hp_wing_R` — Wing attachment (left/right)
+- `hp_spine` — Spine connector for capital ship module chaining
+
+These OBJ modules serve as reference shapes for the modular ship assembly system. In production, the AI Ship Designer and procedural geometry systems generate all module meshes from parameterized definitions.
+
+**Planet Assets** (all procedural):
+- Terrain: Noise-based heightmaps + voxel caves
+- Materials: Procedural PBR (color, roughness, normals from noise)
+- Flora: L-system growth algorithms
+- Fauna: Procedural body plans with limb graphs
 
 ### 9.2 Audio
 ```
@@ -796,9 +834,8 @@ class ModAPI {
 ```
 Mods/
 ├── CustomShips/
-│   ├── ship_model.fbx
-│   ├── ship_definition.json
-│   └── textures/
+│   ├── ship_definition.json     (procedural parameters + DNA overrides)
+│   └── module_definitions.json  (parameterized module geometry)
 ├── CustomWeapons/
 │   └── weapon_definition.json
 └── CustomBiomes/
@@ -872,7 +909,7 @@ Mods/
 
 ## Conclusion
 
-This technical specification provides a comprehensive blueprint for implementing EDNMS. The modular architecture allows for parallel development of different systems while maintaining clean interfaces between components. The focus on performance optimization from the ground up ensures the game can handle the massive scale of procedural generation while maintaining smooth gameplay.
+This technical specification provides a comprehensive blueprint for implementing EDNMS using a custom simulation-first engine architecture. The decision to build a custom engine (detailed in [ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md)) enables full control over the simulation core, chunk streaming, and physical persistence systems that are central to the game's vision. The modular architecture allows for parallel development of different systems while maintaining clean interfaces between components.
 
 Key technical priorities:
 1. **Robust Physics**: Ensure flight feels precise and responsive

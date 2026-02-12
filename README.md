@@ -18,6 +18,9 @@ Comprehensive design documentation is available:
 
 - **[GAME_DESIGN.md](GAME_DESIGN.md)** - Complete game design document with all features
 - **[TECHNICAL_SPECS.md](TECHNICAL_SPECS.md)** - Technical implementation specifications
+- **[ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md)** - Custom engine architecture (ECS, chunks, serialization, procedural generation)
+- **[NARRATIVE_DESIGN.md](NARRATIVE_DESIGN.md)** - Story premise, narrative arcs, and Ember Reach walkthrough
+- **[MODULAR_SHIPS.md](MODULAR_SHIPS.md)** - Modular ship system (generation, combat, DNA serialization, TITAN ships)
 - **[FEATURE_MATRIX.md](FEATURE_MATRIX.md)** - Feature comparison and integration plan
 - **[QUICKSTART.md](QUICKSTART.md)** - Development quick start guide
 - **[ROADMAP.md](ROADMAP.md)** - Detailed development roadmap
@@ -40,9 +43,11 @@ Comprehensive design documentation is available:
 
 ### Building Systems
 - **On-Foot Building**: Modular base construction with 30+ pieces
-- **Space Stations**: Orbital platform construction and management
+- **Hangars**: Planetary and orbital hangars for physical ship storage and repair
+- **Space Stations**: Orbital platform construction and management (X4-style)
 - **Automation**: Factory-style production chains
-- **Power Systems**: Solar, battery, and generator networks
+- **Power Systems**: Solar, battery, and generator networks with graph-based simulation
+- **Terraforming**: Multi-stage planetary transformation system
 - **Teleportation**: Fast travel between bases
 
 ### Survival Mechanics
@@ -58,6 +63,14 @@ Comprehensive design documentation is available:
 - Ship upgrades and customization
 - Technology research and blueprints
 - Faction reputation system
+- Physical logistics — no magic inventories, everything moves via ships/rovers/drones
+
+### Narrative & Story
+- The galaxy is recovering from a civilization collapse — not thriving
+- Environmental storytelling through broken infrastructure and simulation state
+- Player role: Systems Pioneer / Recovery Engineer
+- Three major narrative arcs: The Terraforming Paradox, The Silent Infrastructure, Ownership vs Stewardship
+- Story System 001: "Ember Reach" — first playable narrative sandbox
 
 ## 🎮 Game Modes
 
@@ -66,12 +79,32 @@ Comprehensive design documentation is available:
 - **Open Play**: Full multiplayer with PvP zones
 - **Creative Mode**: Unlimited resources for building
 
+## 🚢 Ship Assets
+
+Modular OBJ ship models are included for use in the engine's asset pipeline:
+
+| Asset Pack | Contents | Description |
+|-----------|----------|-------------|
+| `CruiserBattleshipModulePack.zip` | `core_m.obj`, `spine_m.obj`, `engine_block_m.obj`, `turret_m.obj`, `hangar_m.obj` | Large capital ship modules (cruiser/battleship class) with hardpoints for engines, weapons, spine connectors, and hangar bays |
+| `ModularShipModulePack.zip` | `core_s.obj`, `engine_s.obj`, `weapon_s.obj`, `wing_s.obj` | Small modular ship modules with hardpoints for engines, weapons, and wing attachments |
+
+Models use a hardpoint naming convention (`hp_` prefix) for attachment points, enabling modular ship assembly in the construction system. These serve as reference geometry and test placeholders — the procedural generation pipeline will generate equivalent module geometry at runtime. See [TECHNICAL_SPECS.md](TECHNICAL_SPECS.md) for the asset pipeline specification.
+
 ## 🛠️ Technology Stack
 
-- **Engine**: Unreal Engine 5 (Nanite, Lumen, World Partition)
-- **Language**: C++ and Blueprints
+- **Engine**: Custom simulation-first engine (see [ENGINE_ARCHITECTURE.md](ENGINE_ARCHITECTURE.md))
+- **Language**: C++17 (data-driven, ECS architecture)
+- **Rendering**: OpenGL/Vulkan (minimal initially, upgraded over time)
 - **Networking**: Client-server with P2P wings
 - **Platform**: PC (Windows/Linux) at launch, consoles post-launch
+
+### Core Philosophy
+1. Simulation first, visuals second
+2. Everything is data-driven
+3. No system depends on rendering
+4. If it can't be saved/loaded, it doesn't exist
+5. One solar system must run headless
+6. Everything is procedurally generated or AI-created — no pre-made assets
 
 ## 🗺️ Development Roadmap
 
